@@ -4,7 +4,3 @@
 ## deploy
 
 `sh deploy.sh`
-
-## test
-
-`npm run test`
