@@ -19,6 +19,7 @@ Parameters:
 
 
 Resources:
+#  # 呼び出し側に追加する
 #  ServerlessAPI:
 #    Type: AWS::Serverless::Api
 #    Properties:
@@ -58,4 +59,12 @@ Resources:
 #          Properties:
 #            Path: /hello
 #            Method: get
-#            RestApiId: !Ref ServerlessAPI
+#            # 呼び出し側に追加する
+#            RestApiId: Fn::ImportValue: "lambda-authorizer-for-auth0"
+
+Outputs:
+  Auth0AuthorizerFunction:
+    Description: "Lambda Auth0 Authorizer Function ARN"
+    Value: !GetAtt Auth0AuthorizerFunction.Arn
+    Export:
+      Name: "lambda-authorizer-for-auth0"
